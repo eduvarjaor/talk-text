@@ -3,6 +3,7 @@
     <div class="text-center">
       <MicrophoneIcon :isRecording="isRecording" />
       <AudioRecorder @recording="handleRecording" />
+      <TranscriptionOutput :transcription="transcription" />
     </div>
   </div>
 </template>
@@ -19,12 +20,19 @@
     },
     data() {
       return {
-        isRecording: false
+        isRecording: false,
+        transcription: ''
       };
     },
     methods: {
       handleRecording(recording) {
         this.isRecording = recording;
+      },
+      handleAudio(audioBlob) {
+        
+      },
+      async transcribeAudio(audioBlob) {
+        
       }
     }
   }
