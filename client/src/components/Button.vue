@@ -2,7 +2,7 @@
   <button
     @click="onClick"
     :disabled="disabled"
-    :class="`p-3 text-lg rounded-lg transition ease-in duration-200 font-semibold w-24`"
+    :class="`p-3 text-lg rounded-lg transition ease-in duration-200 font-semibold w-24  shadow-xl`"
   >
     <slot></slot>
   </button>

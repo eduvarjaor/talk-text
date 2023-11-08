@@ -8,7 +8,7 @@
       </div>
 
       <div class="flex flex-col justify-center items-center">
-        <div class="inline-flex items-center justify-center rounded-full bg-white p-5 shadow-lg">
+        <div class="inline-flex items-center justify-center rounded-full bg-white p-5  shadow-xl">
         <MicrophoneIcon :isRecording="isRecording" />
         </div>
       
