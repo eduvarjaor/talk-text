@@ -22,19 +22,22 @@
     async startRecording() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        this.mediaRecorder = new MediaRecorder(stream);
-        this.mediaRecorder.ondataavailable = event => {
-          this.audioChunks.push(event.data);
-        };
-        this.mediaRecorder.onstop = () => {
-          const audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
-          this.audioUrl = URL.createObjectURL(audioBlob);
-          this.audioChunks = [];
-        };
-        this.mediaRecorder.start();
-        this.isRecording = true;
+          this.mediaRecorder = new MediaRecorder(stream);
+          this.mediaRecorder.ondataavailable = event => {
+              this.audioChunks.push(event.data);
+          };
 
-        this.$emit('recording', true);
+          this.mediaRecorder.onstop = () => {
+              const audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
+              this.audioUrl = URL.createObjectURL(audioBlob);
+              this.$emit('audio', audioBlob);
+              this.audioChunks = [];
+          };
+
+          this.mediaRecorder.start();
+          this.isRecording = true;
+
+          this.$emit('recording', true);
       } catch (err) {
         console.error('Error starting the recording:', err);
       }
