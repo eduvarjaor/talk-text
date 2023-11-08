@@ -1,19 +1,21 @@
 <template>
-  <div class="flex justify-center items-center h-screen bg-gradient-to-r from-blue-900 to-blue-500">
+  <div class="h-screen bg-gradient-to-r from-blue-900 to-blue-500">
     <div class="text-center">
-      <div class="mb-[4rem] flex flex-col">
-        <span class="text-6xl font-bold text-white mb-3">Talk Text</span>
-        <span class="text-xl font-medium text-white">Don't waste your time writing, let AI do it for you</span>
-      </div>
-      
-      <div class="inline-flex items-center justify-center rounded-full bg-white p-4 shadow-lg">
-        <MicrophoneIcon :isRecording="isRecording" />
-      </div>
-      
-      <AudioRecorder @recording="handleRecording" @audio="handleAudio" />
+      <div class="flex flex-col lg:mb-[4rem] xx:mb-[3rem]">
+        <span class="lg:text-6xl lg:mt-[4rem] font-bold text-white mb-3 xx:text-5xl xx:mt-[3rem] md:mt-[4rem] md:text-6xl sm:text-6xl">Talk Text</span>
 
-      <TranscriptionOutput :transcription="transcription" />
-    </div>
+        <span class="lg:text-xl font-medium text-white xx:text-base md:text-xl sm:text-xl">Don't waste your time writing, let AI do it for you</span>
+      </div>
+
+      <div class="flex flex-col justify-center items-center">
+        <div class="inline-flex items-center justify-center rounded-full bg-white p-5 shadow-lg">
+        <MicrophoneIcon :isRecording="isRecording" />
+        </div>
+      
+        <AudioRecorder @recording="handleRecording" @audio="handleAudio" />
+        <TranscriptionOutput :transcription="transcription" />
+        </div>
+      </div>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex space-x-4 mt-5 justify-center mb-[3rem]">
+    <div class="flex space-x-4 mt-9 justify-center mb-[1rem]">
       <ButtonComponent :disabled="isRecording" @click="startRecording" class="bg-green-400 hover:bg-green-500">Start</ButtonComponent>
 
       <ButtonComponent color="red" :disabled="!isRecording" @click="stopRecording" class="bg-red-400 hover:bg-red-500">Stop</ButtonComponent>
