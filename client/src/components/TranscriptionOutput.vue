@@ -1,7 +1,7 @@
 <template>
-    <div class="transcription-output">
-        <p v-if="transcription">{{ transcription }}</p>
-        <p v-else class="placeholder">Transcription will appear here...</p>
+    <div class="mt-5 border-double border-4 p-[6rem] w-[45rem] bg-white rounded-lg">
+        <p v-if="transcription" class="text-xl">{{ transcription }}</p>
+        <p v-else class="placeholder text-xl">Transcription will appear here...</p>
     </div>
 </template>
 

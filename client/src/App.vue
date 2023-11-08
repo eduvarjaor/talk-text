@@ -1,8 +1,17 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
+  <div class="flex justify-center items-center h-screen bg-gradient-to-r from-blue-900 to-blue-500">
     <div class="text-center">
-      <MicrophoneIcon :isRecording="isRecording" />
+      <div class="mb-[4rem] flex flex-col">
+        <span class="text-6xl font-bold text-white mb-3">Talk Text</span>
+        <span class="text-xl font-medium text-white">Don't waste your time writing, let AI do it for you</span>
+      </div>
+      
+      <div class="inline-flex items-center justify-center rounded-full bg-white p-4 shadow-lg">
+        <MicrophoneIcon :isRecording="isRecording" />
+      </div>
+      
       <AudioRecorder @recording="handleRecording" @audio="handleAudio" />
+
       <TranscriptionOutput :transcription="transcription" />
     </div>
   </div>

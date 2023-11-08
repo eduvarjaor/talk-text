@@ -1,5 +1,5 @@
 <template>
-    <font-awesome-icon :icon="['fas', 'microphone']" class="text-6xl" :class="{'animate-pulse': isRecording}" />
+    <font-awesome-icon :icon="['fas', 'microphone']" class="text-7xl" :class="{'animate-pulse-opacity text-red-500': isRecording}" />
 </template>
 
 <script>

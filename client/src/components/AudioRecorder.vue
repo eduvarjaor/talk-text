@@ -1,22 +1,25 @@
 <template>
-    <div class="flex space-x-2 mt-3">
-        <button @click="startRecording" :disabled="isRecording" class="bg-green-300 p-2">Start</button>
+    <div class="flex space-x-4 mt-5 justify-center mb-[3rem]">
+      <ButtonComponent :disabled="isRecording" @click="startRecording" class="bg-green-400 hover:bg-green-500">Start</ButtonComponent>
 
-        <button @click="stopRecording" :disabled="!isRecording" class="bg-red-300 p-2">Stop</button>
-
-        <!-- <audio ref="audioElement" controls></audio> -->
+      <ButtonComponent color="red" :disabled="!isRecording" @click="stopRecording" class="bg-red-400 hover:bg-red-500">Stop</ButtonComponent>
     </div>
 </template>
 
 <script>
+  import ButtonComponent from './Button.vue';
+
     export default{
-        data() {
-    return {
-      isRecording: false,
-      mediaRecorder: null,
-      audioChunks: [],
-      audioUrl: ''
-    };
+      components: {
+      ButtonComponent,
+    },
+      data() {
+        return {
+          isRecording: false,
+          mediaRecorder: null,
+          audioChunks: [],
+          audioUrl: ''
+        };
   },
   methods: {
     async startRecording() {
