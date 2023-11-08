@@ -9,13 +9,19 @@ const Busboy = require("busboy");
 
 require("dotenv").config();
 
-const corsMiddleware = cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    headers: ["Content-Type"],
+const whitelist = ["http://localhost:5173", "https://talktext.netlify.app"];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true,
-    contentType: true,
-});
+};
+
+const corsMiddleware = cors(corsOptions);
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 

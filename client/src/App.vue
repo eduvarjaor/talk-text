@@ -49,7 +49,7 @@
           const formData = new FormData();
           formData.append('file', audioBlob, 'recording.wav');
 
-          const response = await fetch('http://localhost:5000/talk-text-21c1b/us-central1/transcriptAudio', {
+          const response = await fetch('https://us-central1-talk-text-21c1b.cloudfunctions.net/transcriptAudio', {
             method: 'POST',
             body: formData
           });
