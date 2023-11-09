@@ -1,40 +1,46 @@
 <template>
-    <div class="flex space-x-2 mt-3">
-        <button @click="startRecording" :disabled="isRecording" class="bg-green-300 p-2">Start</button>
+    <div class="flex space-x-4 mt-9 justify-center mb-[1rem]">
+      <ButtonComponent :disabled="isRecording" @click="startRecording" class="bg-green-400 hover:bg-green-500">Start</ButtonComponent>
 
-        <button @click="stopRecording" :disabled="!isRecording" class="bg-red-300 p-2">Stop</button>
-
-        <!-- <audio ref="audioElement" controls></audio> -->
+      <ButtonComponent color="red" :disabled="!isRecording" @click="stopRecording" class="bg-red-400 hover:bg-red-500">Stop</ButtonComponent>
     </div>
 </template>
 
 <script>
+  import ButtonComponent from './Button.vue';
+
     export default{
-        data() {
-    return {
-      isRecording: false,
-      mediaRecorder: null,
-      audioChunks: [],
-      audioUrl: ''
-    };
+      components: {
+      ButtonComponent,
+    },
+      data() {
+        return {
+          isRecording: false,
+          mediaRecorder: null,
+          audioChunks: [],
+          audioUrl: ''
+        };
   },
   methods: {
     async startRecording() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        this.mediaRecorder = new MediaRecorder(stream);
-        this.mediaRecorder.ondataavailable = event => {
-          this.audioChunks.push(event.data);
-        };
-        this.mediaRecorder.onstop = () => {
-          const audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
-          this.audioUrl = URL.createObjectURL(audioBlob);
-          this.audioChunks = [];
-        };
-        this.mediaRecorder.start();
-        this.isRecording = true;
+          this.mediaRecorder = new MediaRecorder(stream);
+          this.mediaRecorder.ondataavailable = event => {
+              this.audioChunks.push(event.data);
+          };
 
-        this.$emit('recording', true);
+          this.mediaRecorder.onstop = () => {
+              const audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
+              this.audioUrl = URL.createObjectURL(audioBlob);
+              this.$emit('audio', audioBlob);
+              this.audioChunks = [];
+          };
+
+          this.mediaRecorder.start();
+          this.isRecording = true;
+
+          this.$emit('recording', true);
       } catch (err) {
         console.error('Error starting the recording:', err);
       }
