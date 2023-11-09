@@ -9,7 +9,7 @@ const Busboy = require("busboy");
 
 require("dotenv").config();
 
-const whitelist = ["http://localhost:5173", "https://talktext.netlify.app"];
+const whitelist = ["http://localhost:5173", "https://talk-text.netlify.app"];
 const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1 || !origin) {
