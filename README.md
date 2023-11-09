@@ -1,6 +1,8 @@
 # Talk Text
 
-![Usage](client/src/assets/README-images/Usage.gif)
+<p align="center">
+  <img src="client/src/assets/README-images/Usage.gif" alt="Usage Demo">
+</p>
 
 ### About
 
