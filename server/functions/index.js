@@ -53,6 +53,11 @@ exports.transcriptAudio = functions.https.onRequest(async (req, res) => {
 
                 fs.unlinkSync(tmpFilePath);
 
+                res.set(
+                    "Access-Control-Allow-Origin",
+                    "https://talk-text.netlify.app"
+                );
+                res.set("Access-Control-Allow-Credentials", "true");
                 res.status(200).send({ data: transcription.text });
             } catch (error) {
                 console.error("Error on transcription:", error);
@@ -63,6 +68,11 @@ exports.transcriptAudio = functions.https.onRequest(async (req, res) => {
 
         busboy.on("error", (error) => {
             console.error("Busboy error:", error);
+            res.set(
+                "Access-Control-Allow-Origin",
+                "https://talk-text.netlify.app"
+            );
+            res.set("Access-Control-Allow-Credentials", "true");
             res.status(500).send({ error: "Busboy Error" });
         });
 
